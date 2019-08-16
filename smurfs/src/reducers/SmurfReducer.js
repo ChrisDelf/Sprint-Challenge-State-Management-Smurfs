@@ -5,11 +5,7 @@ import {
 } from '../actions';
 
 const initialState = {
-  smurfs: [
-    {
-
-    }
-  ]
+  smurfs: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -18,14 +14,15 @@ export const reducer = (state = initialState, action) => {
       return { ...state };
 
     case FETCH_SMURF_DATA_SUCCESS:
-      console.log(action.payload)
+      console.log("action payload",action.payload);
       return { ...state,
-        smurfs: [...state.smurfs, action.payload]
+        smurfs:  action.payload };
 
-      }
+    case FETCH_SMURF_DATA_FAILURE:
+      console.log("failure", action.payload)
+      return{...state}
 
-  default:
-  return state;
+    default:
+      return state;
   }
-
 };

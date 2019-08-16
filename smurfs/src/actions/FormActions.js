@@ -15,7 +15,7 @@ export const getData = () => {
         dispatch({ type: FETCH_SMURF_DATA_SUCCESS, payload: res.data });
       })
       .catch(err => {
-        dispatch({ type: FETCH_SMURF_DATA_FAILURE, payload: err.response });
+        dispatch({ type: FETCH_SMURF_DATA_FAILURE, payload: err });
       });
   };
 };
