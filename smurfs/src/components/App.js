@@ -1,4 +1,4 @@
-import React, { Component, useEffect} from 'react';
+import React, { Component, useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import AddSmurfForm from './AddSmurfForm';
@@ -8,20 +8,19 @@ import './App.css';
 import { getData } from '../actions'
 
 const App = props => {
-  console.log("PROPS IN APP", props)
+  console.log("PROPS IN APP", props.update)
+  const [udpates, setUpdates] = useState(false)
 
   useEffect(() => {
-   props.getData()
-  }, []);
+    props.getData()
+    console.log("IN use Effect",props)
+  }, [udpates]);
 
     return (
       <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your state management version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
+      <h1> WELCOME TO SMURF TOWN</h1>
       <AddSmurfForm />
-
+      <button onClick = {() => setUpdates(true)}> Update </button>
       {props.smurfs.map(smurf => <SmurfCard key={smurf.id} smurf={smurf}/>)}
       </div>
     );
@@ -30,7 +29,8 @@ const App = props => {
 
 const mapStateToProps = state => {
   return {
-    smurfs: state.smurfs
+    smurfs: state.smurfs,
+    update: state.update
   }
 }
 

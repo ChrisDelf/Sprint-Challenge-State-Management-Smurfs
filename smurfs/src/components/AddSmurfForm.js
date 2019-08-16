@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
 
-import { postData } from '../actions';
+import { postData, updateSmurfs } from '../actions';
+
 
 const AddSmurfForm = props => {
-  const initialFormState = { id: null, name: '', age: '', hieght: '' };
+  const initialFormState = { id: null, name: '', age: '', height: '' };
   const [user, setUser] = useState(initialFormState);
 
   const handleInputChange = event => {
@@ -21,8 +22,9 @@ const AddSmurfForm = props => {
 
 
         props.postData(user)
-
+        props.updateSmurfs()
         setUser(initialFormState);
+
       }}
     >
       <label>Name</label>
@@ -54,5 +56,5 @@ const AddSmurfForm = props => {
 
 export default connect(
   null,
-  { postData }
+  { postData, updateSmurfs}
 )(AddSmurfForm);

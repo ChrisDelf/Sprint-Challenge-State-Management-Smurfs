@@ -39,7 +39,8 @@ export const postData = values => {
 export const UPDATE_SMURF = 'UPDATE_SMURF';
 
 export const updateSmurfs = () => {
-
-  return{type: 'UPDATE_SMURF'}
-
+  debugger
+  dispatch => {
+    dispatch({ type: UPDATE_SMURF });
+  };
 };
