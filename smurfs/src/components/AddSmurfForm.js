@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 
+import { connect } from 'react-redux';
+
+import { postData } from '../actions';
+
 const AddSmurfForm = props => {
-  const initialFormState = { id: null, name: '', email: '', role: '' };
+  const initialFormState = { id: null, name: '', age: '', hieght: '' };
   const [user, setUser] = useState(initialFormState);
 
   const handleInputChange = event => {
@@ -15,7 +19,9 @@ const AddSmurfForm = props => {
       onSubmit={event => {
         event.preventDefault();
 
-        props.addUser(user);
+
+        props.postData(user)
+
         setUser(initialFormState);
       }}
     >
@@ -26,18 +32,18 @@ const AddSmurfForm = props => {
         value={user.name}
         onChange={handleInputChange}
       />
-      <label>Email</label>
+      <label>Age</label>
       <input
         type="text"
         name="age"
-        value={user.email}
+        value={user.age}
         onChange={handleInputChange}
       />
-      <label>Email</label>
+      <label>Height</label>
       <input
         type="text"
         name="height"
-        value={user.email}
+        value={user.height}
         onChange={handleInputChange}
       />
 
@@ -46,4 +52,7 @@ const AddSmurfForm = props => {
   );
 };
 
-export default AddSmurfForm;
+export default connect(
+  null,
+  { postData }
+)(AddSmurfForm);

@@ -1,37 +1,41 @@
-import React, { Component, useEffect} from 'react';
+import React, { Component, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import AddSmurfForm from './AddSmurfForm';
 import SmurfCard from './SmurfCard';
 import './App.css';
 
-import { getData } from '../actions'
+import { getData } from '../actions';
 
 const App = props => {
-  console.log("PROPS IN APP", props)
+  console.log('PROPS IN APP', props);
 
   useEffect(() => {
-   getData()
+    props.getData();
   }, []);
 
-    return (
-      <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your state management version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
-        <AddSmurfForm />
-      {props.smurfs.map(smurf => <SmurfCard key={smurf.id} smurf={smurf}/>)}
-      </div>
-    );
+  return (
+    <div className="App">
+      <h1>SMURFS! 2.0 W/ Redux</h1>
+      <div>Welcome to your state management version of Smurfs!</div>
+      <div>Start inside of your `src/index.js` file!</div>
+      <div>Have fun!</div>
+      <AddSmurfForm />
 
-}
+      <button
+        onClick={() => {
+          props.smurfs.map(smurf => <SmurfCard key={smurf.id} smurf={smurf} />);
+        }}
+      ></button>
+    </div>
+  );
+};
 
 const mapStateToProps = state => {
   return {
     smurfs: state.smurfs
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,
